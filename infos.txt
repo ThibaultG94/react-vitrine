@@ -1,0 +1,272 @@
+- create-react-app react-vitrine
+- lancer le projet sur vscode
+- nettoyer le projet (src, index.html, strictmode ?)
+- title : FS Agency - Votre agence web à Poitiers, 10 ans de métier
+- mettre le support de démarrage (assets dans public, le reste dans src)
+- logo : link rel shortcut icon logo.svg
+- installer sass, react-router-dom
+- h1(COUCOU) -> npm start
+- créer {Home.js(h1(Home)), Project1.js (h1(Projet 1)), 
+Project2.js(...), Project3.js(...), Project4.js(...),
+Contact.js(...)}
+- créer NotFound.js (div class notFound 
+> div class notFound-content > h2 (Erreur 404))
+- App : BrowserRouter... (Home, Projet1,2,3,4, Contact, Notfound(*))
+- Notfound : Navlink to=/ h3(Retour à l'accueil) i class fas fa-Home
+- cdnjs : first link (html index)
+- créer Navigation.js (div class navigation 
+> ul > Navlink to / class (ternaire nav-active hover ou hover)
+> li (accueil))
+- ul > li (class nav-portfolio) > ul (class nav-projects)
+> navlink + li (projets 1 à 4)
+- ul > Navlink > li (contact)
+- Home.js > Navigation (supprimer h1)
+- créer Mouse.js (span class cursor)
+- Home.js > Mouse (avant Navigation)
+- Mouse.js > useEffect > const cursor (pointer .cursor)
++ window.addEventListener (mousemove e) > cursor.style.top = e.y 
+ "px" ET left
+ + queryselectorAll(.hover).forEach(link) 
+ > link.addeventlistener(mouseover)
+ > cursor.classlist.add(hovered -> changer l'orga dans sass (&))
+ + link.addeventlistener(mouseleave)
+ > ajouter transition (.3s ease out) à cursor
+ & remove (hovered)
+ - créer SocialNetwork.js > div class social-network
+ > ul class content
+ > a href facebook.com target _blank rel noopener noreferrer
+ class hover
+ > li > i class fa fa-facebook-f
+ + twitter & instagram (i class fas fa-twitter/instagram)
+ - Home.js > SocialNetwork (après Navigation)
+ - recharger la page pour les .hover (link)
+ - SocialNetwork.js (tous les a) > onmouseover {anim}
+ + (avant return) > const anim = ()
+ => const icons = queryselectorAll(.social-network a)
+ + icons.forEach(link) 
+ > link.addEventListener(mouseover, e)
+ > link.style.transform = `translate(${e.offsetX - 20}px, ${e.offsetY -  13}px`
++ link.addEventListener(mouseleave)
+> link.style.transform = ""
+
+Home.js > (après SocialNetwork) div class home-main
+> div class main-content
+> h1 FS AGENCY
+Nouveau composant : DynamicText.js > h2 TEXT
+(Home.js apres h1) : DynamicText
+Home : (apres Mouse) : div class home (englobe tout le reste)
+Mettre DynamicText dans un h2
+
+DynamicText.js > remplacer div + h2 par
+: span class dynamic-text 
+> span simply
++ span id text-target
+Dynamic.js (avant return) > useEffect
+> let array tableau "simple" "clear" "smart" "strong"
++ let wordIndex 0
++ let letterIndex 0
++ (avant array) const target getelementbyid text-target
++ (après letterIndex) const createLetter () =>
+> const letter createElement span
++ target.appendChild letter
++ letter.classlist add letter
++ letter style opacity 0
++ letter style animation anim 5s ease forwards
++ letter textContent array[0][1]
++ setTimeOut letter remove 2000
++ (tout à la fin du useEffect) : constLoop () (l'appeler une fois à l'exterieur) =>
+> setTimeOut createLetter() letterIndex++ loop() 80
+Dans le setTimeOut > englober le tout dans if letterIndex < array[wordIndex].length
++ else wordIndex ++ letterIndex 0 setTimeOut(loop, 2000)
++ (en premier dans le premier setTimeOut)
+> if wordIndex >= array.length 
+> wordIndex 0 letterIndex 0 loop()
++ englober la suite dans else if
+
+Nouveau composant : Buttons.js
+> div class scroll-bottom
+> Navlink to={}  class left hover
+> span &#10092
++ Navlink pareil mais class right hover et span &#10093
++ (après div home-main) Buttons right={"./projet-1"}
+Const Buttons = ajouter argument props
+rajouter à chaque navlink to : props.left ou props.right
++ englober le navlink left dans : {props.left && (englober la)}
++ pareil pour navlink right
+
+Logo.js > span class logo (FS)
+
+Project1.js > main (remplace div) > Mouse
++ div class project
+> Navigation
++ Logo
++ Buttons left={"/"} right={"/projet-2"}
+
+Nouveau composant : Project.js (import  {projectData} from "../data/projectsData")
+> div class project-main
+> div class project-content
+Faire un log avant le return de projectData
+Appeler Project.js dans Project1.js (entre Logo et Buttons) et dire dedans : projectNumber={0}
+
+Dans Project.js
+> remplacer console.log par const [currentProject] = useState(projectsData[projectNumber])
+ET rajouter { projectNumber } en argument de const Project
+> (dans div class project-content) h1 {currentProject.title}
++ p {currentProject.date}
++ ul class languages {currentProject.languages.map((item) => {
+  return <li key={item}>{item}</li>
+})}
++ (après div project-content) : div class img--content
+> div class img-container hover
+> span > h3 {currentProject.title}
+       + p {currentProject.infos}
++ (après span) img src={currentProject.img} alt={currentProject.title} class img
+refresh page ?
++ (après div class img-container hover) :
+div class button-container
+> a href={currentProject.link} target="_blank" rel="noopener noreferrer" class="hover"
+> span class button (voir le site)
+
+(après div class project-content) : span class random-circle
+(avant le return) const left setLeft
++ const top setTop
++ const size setSize
+(span class random-circle) style={{ left, top, transfomr:size }}
+(après les const, avant le return): useEffect
+> setLeft(Math.floor(Math.random() * 200 + 700) + "px")
++ setTop(Math.floor(Math.random() * 200 + 150) + "px")
++ setSize("scale(" + (Math.random() + 0.7) + ")")
+
+Copier Project1.js et coller sur Project2.js
+Project2.js : Renommer le const Project2
+& <Project projectNumber={1} />
+& <Buttons left={"/project-1"} right={"/project-3"}
+Faire la même chose pour projet3 et 4(right={"/contact})
+
+Contact.js > (à la place du div) main 
+> <Mouse />
++ div class contact
+> <Navigation />
++ <Logo />
++ <ContactForm />
+Recupérer const FormTemplate dans FormTemplate.js (1:53:43) et remplacer const ContactForm
+Renommer const FormTemplate par const ContactForm
+Rajouter import useRef
+npm i @emailjs/browser
+(entre div class form-container et form) h2 (contactez-nous)
+& rajouter a form : class form-content
+& input name : rajouter id name
+& input mail : rajouter id mail
+& textarea : rajouter id mess
+& input submit : rajouter class hover button
+import emailjs from "@emailjs/browser"
+import {init} from "@emailjs/browser"
+(en dessous) : init(process.env.ID)
+Recupérer REACT_APP_ID => dans .env
+Relancer npm start
+
+Dans Contact.js
+(après <ContactForm />)
+div class contact-infos
+> div class address
+> div class content
+> h4 (adresse)
++ p (12 rue Laplace)
++ p (64200 Biarritz)
+& (après div class address)
+div class phone
+> div class content
+> h4 (téléphone)
+npm i react-copy-to-clipboard
+import { CopyToClipboard } from "react-copy-to-clipboard"
++ (après h4) <CopyToClipboard text="0642844284" className="hover></CopyToClipboard>
+> p style={{cursor: "pointer"}} class clipboard onClick{() => alert("Téléphone Copié !")} (06 42 84 42 84s)
+& (après la div class phone) : div class email
+> div class content
+> h4 (email)
++ reprendre le CopyToClipboard de phone (
+  & text="fsagency@gmail.com" alert("Email Copié !") (fsagency@gmail.com)
+)
+& (après div class email) : <SocialNetwork />
++ div class credits
+p (FromScratch - 2022)
+& (après fermeture div class infos) <Buttons left={"/projet-4"} />
+
+npm i framer-motion
+Dans App.js : Englober <Routes></Routes> par <AnimatePresence></AnimatePresence>
+Dans Home.js : Transformer h1 (FS AGENCY) par :
+<motion.h1 drag onDragEnd dragContraints={{
+  left: -250,
+  right: 950,
+  top: -200,
+  bottom: 250
+}}>FS AGENCY</motion.h1>
+& Faire la même chose sur le h2 qui suit (<DynamicText />)
+& (avant le return) : const variants = () => {}
+> initial : {
+  opacity: 0,
+  transition: {duration: 0.5},
+  x: 100,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+  exit: {
+    opacity: 0,
+    transition: { duration: 0.3 },
+    x: -100,
+  }
+& Entre Mouse et Navigation :
+<motion.div className="home" initial="initial" animate="visible" exit="exit" variants={variants}
+
+Dans Project.js :
+import { motion } from "framer-motion"
+> Transformer div class project-main en :
+<motion.div className="project-main" initial="initial" animate="visible" exit="exit" transition={transition} variants={variants}>
+& (Entre le useEffect et le return) : 
+const transition = () =>
+> ease: [0.03, 0.07, 0.73, 0.9],
+  duration: 0.6, 
+& (Avant const transition): const variants = () =>
+> initial: {
+  opacity: 0,
+  transition: { duration: 0.5 },
+  x: 200,
+  },
+  visible: {
+    opacity: 1,
+    x: 0
+  },
+  exit: {
+    opacity: 0.4,
+    transition: {durattion: 0.35}
+    x: -800
+  }
+& (entre const transition et return) : const imgAnim = () =>
+> initial: {
+  opacity: 0,
+  x: Math.floor(Math.random() * 350 * (Math.random() > 0.4 ? & : -1))
+  y: Math.floor(Math.random() * 120 * (Math.random() > 0.4 ? & : -1))
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+  }
+& Transformer div class img-content en :
+motion.div class img-content initial= "initial" animate="visible" variants={imgAnim} transition={{duration: 1.2}}
+
+Dans Contact.js :
+> import { motion } from "framer-motion"
+& (avant return) : const pageTransition = () =>
+> in: {
+  opacity: 1,
+  x: 0,
+  },
+  out: {
+    opacity: 0,
+    x: 200,
+  }
+& (entre Mouse et Navigation) :
+motion.div class contact initial="out" animate="in"  exit="out" variants={pageTransition} transition={{duration: 0.4}}
