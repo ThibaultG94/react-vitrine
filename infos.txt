@@ -21,7 +21,7 @@ Contact.js(...)}
 > navlink + li (projets 1 à 4)
 - ul > Navlink > li (contact)
 - Home.js > Navigation (supprimer h1)
-- créer Mouse.js (span class cursor)
+- créer Mouse.js (return span class cursor)
 - Home.js > Mouse (avant Navigation)
 - Mouse.js > useEffect > const cursor (pointer .cursor)
 + window.addEventListener (mousemove e) > cursor.style.top = e.y 
