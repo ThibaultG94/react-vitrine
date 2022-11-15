@@ -36,8 +36,8 @@ Contact.js(...)}
  > ul class content
  > a href facebook.com target _blank rel noopener noreferrer
  class hover
- > li > i class fa fa-facebook-f
- + twitter & instagram (i class fas fa-twitter/instagram)
+ > li > i class fab fa-facebook-f
+ + twitter & instagram (i class fab fa-twitter/instagram)
  - Home.js > SocialNetwork (après Navigation)
  - recharger la page pour les .hover (link)
  - SocialNetwork.js (tous les a) > onmouseover {anim}
