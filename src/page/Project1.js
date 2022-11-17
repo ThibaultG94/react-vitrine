@@ -1,16 +1,19 @@
 import React from 'react';
 import Mouse from '../components/Mouse';
 import Navigation from '../components/Navigation';
-import SocialNetwork from '../components/SocialNetwork';
+import Logo from '../components/Logo';
+import Buttons from '../components/Buttons';
 
 const Project1 = () => {
 	return (
-		<div>
-			<h1>Projet 1</h1>
+		<main>
 			<Mouse />
-			<Navigation />
-			<SocialNetwork />
-		</div>
+			<div className="project">
+				<Navigation />
+				<Logo />
+				<Buttons left={'/'} right={'/project-2'} />
+			</div>
+		</main>
 	);
 };
 
