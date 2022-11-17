@@ -67,7 +67,7 @@ Dynamic.js (avant return) > useEffect
 + let letterIndex 0
 + (avant array) const target getelementbyid text-target
 + (après letterIndex) const createLetter () =>
-> const letter createElement span
+> const letter document.createElement span
 + target.appendChild letter
 + letter.classlist add letter
 + letter style opacity 0
