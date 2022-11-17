@@ -7,7 +7,7 @@ const DynamicText = () => {
 		let wordIndex = 0;
 		let letterIndex = 0;
 
-		const createLetter = async () => {
+		const createLetter = () => {
 			const letter = document.createElement('span');
 			target.appendChild(letter);
 
@@ -20,8 +20,8 @@ const DynamicText = () => {
 			}, 2000);
 		};
 
-		const loop = async () => {
-			await setTimeout(() => {
+		const loop = () => {
+			setTimeout(() => {
 				if (wordIndex >= array.length) {
 					wordIndex = 0;
 					letterIndex = 0;
