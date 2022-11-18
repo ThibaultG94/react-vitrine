@@ -86,8 +86,8 @@ Dans le setTimeOut > englober le tout dans if letterIndex < array[wordIndex].len
 Nouveau composant : Buttons.js
 > div class scroll-bottom
 > Navlink to={}  class left hover
-> span &#10092
-+ Navlink pareil mais class right hover et span &#10093
+> span &#10092;
++ Navlink pareil mais class right hover et span &#10093;
 + (après div home-main) Buttons right={"./projet-1"}
 Const Buttons = ajouter argument props
 rajouter à chaque navlink to : props.left ou props.right
@@ -102,10 +102,10 @@ Project1.js > main (remplace div) > Mouse
 + Logo
 + Buttons left={"/"} right={"/projet-2"}
 
-Nouveau composant : Project.js (import  {projectData} from "../data/projectsData")
+Nouveau composant : Project.js (import  {projectsData} from "../data/projectsData")
 > div class project-main
 > div class project-content
-Faire un log avant le return de projectData
+Faire un log avant le return de projectsData
 Appeler Project.js dans Project1.js (entre Logo et Buttons) et dire dedans : projectNumber={0}
 
 Dans Project.js
