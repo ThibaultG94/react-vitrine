@@ -1,15 +1,18 @@
 import React from 'react';
 import Mouse from '../components/Mouse';
 import Navigation from '../components/Navigation';
-import SocialNetwork from '../components/SocialNetwork';
+import Logo from '../components/Logo';
+import ContactForm from '../components/ContactForm';
 
 const Contact = () => {
 	return (
 		<div>
-			<h1>Contact</h1>
 			<Mouse />
-			<Navigation />
-			<SocialNetwork />
+			<div className="contact">
+				<Navigation />
+				<Logo />
+				<ContactForm />
+			</div>
 		</div>
 	);
 };
