@@ -202,6 +202,7 @@ Dans Home.js : Transformer h1 (FS AGENCY) par :
   bottom: 250
 }}>FS AGENCY</motion.h1>
 & Faire la même chose sur le h2 qui suit (<DynamicText />)
+<motion.div className="home" initial="initial" animate="visible" exit="exit" variants={variants}
 & (avant le return) : const variants = () => {}
 > initial : {
   opacity: 0,
@@ -218,7 +219,6 @@ Dans Home.js : Transformer h1 (FS AGENCY) par :
     x: -100,
   }
 & Entre Mouse et Navigation :
-<motion.div className="home" initial="initial" animate="visible" exit="exit" variants={variants}
 
 Dans Project.js :
 import { motion } from "framer-motion"
