@@ -14,7 +14,7 @@ const Contact = () => {
 				<Logo />
 				<ContactForm />
 				<div className="contact-infos">
-					<div className="adress">
+					<div className="address">
 						<div className="content">
 							<h4>adresse</h4>
 							<p>12 rue Laplace</p>
